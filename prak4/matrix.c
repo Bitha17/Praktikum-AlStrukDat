@@ -1,7 +1,7 @@
 /* File: matrix.c */
 /* NIM : 13521111 */
 /* Nama: Tabitha Permalla */
-/* Tanggal: 17 September 2022 */
+/* Tanggal: 19 September 2022 */
 /* Topik praktikum: ADT Matrix */
 
 #include <stdio.h>
@@ -201,22 +201,14 @@ boolean isSymmetric(Matrix m){
 /* Mengirimkan true jika m adalah matriks simetri : isSquare(m) 
    dan untuk setiap elemen m, m(i,j)=m(j,i) */
     if (isSquare(m)){
-        boolean sym = true;
-        int i = 0;
-        while (i < ROW_EFF(m) && sym){
-            int j = 0;
-            while (j < COL_EFF(m) && sym)
-            {
+        for (int i = 0; i < ROW_EFF(m); i++){
+            for (int j = 0; j < COL_EFF(m); j++){
                 if (ELMT(m,i,j) != ELMT(m,j,i)){
-                    sym = false;
-                }
-                else{
-                    j++;
+                    return false;
                 }
             }
-            i++;
         }
-        return sym;
+        return true;
     }
     else{
         return false;
@@ -226,32 +218,17 @@ boolean isIdentity(Matrix m){
 /* Mengirimkan true jika m adalah matriks satuan: isSquare(m) dan 
    setiap elemen diagonal m bernilai 1 dan elemen yang bukan diagonal bernilai 0 */
     if (isSquare(m)){
-        boolean id = true;
-        int i = 0;
-        while (i < ROW_EFF(m) && id){
-            int j = 0;
-            while (j < COL_EFF(m) && id)
-            {
-                if (i == j){
-                    if (ELMT(m,i,j) != 1){
-                        id = false;
+        for (int i = 0; i < ROW_EFF(m); i++){
+            for (int j = 0; j < COL_EFF(m); j++){
+                if (i == j && (ELMT(m,i,j) != 1)){
+                        return false;
                     }
-                    else{
-                        j++;
-                    }
-                }
-                else{
-                    if (ELMT(m,i,j) != 0){
-                        id = false;
-                    }
-                    else{
-                        j++;
+                else if (i != j && (ELMT(m,i,j) != 0)){
+                        return false;
                     }
                 }
             }
-            i++;
-        }
-        return id;
+        return true;
     }
     else{
         return false;
@@ -269,12 +246,7 @@ boolean isSparse(Matrix m){
             }
         }
     }
-    if (count <= a){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return (count <= a);
 }
 Matrix negation(Matrix m){
 /* Menghasilkan salinan m dengan setiap elemen dinegasikan (dikalikan -1) */
@@ -329,10 +301,4 @@ void pTranspose(Matrix *m){
 /* I.S. m terdefinisi dan IsSquare(m) */
 /* F.S. m "di-transpose", yaitu setiap elemen m(i,j) ditukar nilainya dengan elemen m(j,i) */
     *m = transpose(*m);
-}
-
-int main(){
-    Matrix m;
-    readMatrix(&m,3,3);
-    printf("%f",determinant(m));
 }

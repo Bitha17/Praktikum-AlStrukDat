@@ -155,22 +155,14 @@ boolean isMatrixEqual(Matrix m1, Matrix m2){
 /* untuk setiap i,j yang merupakan Index baris dan kolom m1(i,j) = m2(i,j) */
 /* Juga merupakan strong eq karena getLastIdxCol(m1) = getLastIdxCol(m2) */
     if ((ROW_EFF(m1) == ROW_EFF(m2)) && (COL_EFF(m1) == COL_EFF(m2))){
-        boolean equal = true;
-        int i = 0;
-        while (i < ROW_EFF(m1) && equal){
-            int j = 0;
-            while (j < COL_EFF(m1) && equal)
-            {
+        for (int i = 0; i < ROW_EFF(m1); i++){
+            for (int j = 0; j < COL_EFF(m1); j++){
                 if (ELMT(m1,i,j) != ELMT(m2,i,j)){
-                    equal = false;
-                }
-                else{
-                    j++;
+                    return false;
                 }
             }
-            i++;
         }
-        return equal;
+        return true;
     }
     else{
         return false;

@@ -1,14 +1,14 @@
 /* File: wordmachine.c */
 /* NIM : 13521111 */
 /* Nama: Tabitha Permalla */
-/* Tanggal: 25 September 2022 */
+/* Tanggal: 29 September 2022 */
 /* Topik praktikum: ADT Mesin Kata */
 /* Definisi Word Machine: Model Akuisisi Versi I */
 
 #include "wordmachine.h"
 #include <stdio.h>
 
-boolean EndWord;
+boolean endWord;
 Word currentWord;
 
 void IgnoreBlanks(){
@@ -28,10 +28,10 @@ void STARTWORD(){
     START();
     IgnoreBlanks();
     if (currentChar == MARK){
-        EndWord = true;
+        endWord = true;
     }
     else{
-        EndWord = false;
+        endWord = false;
         CopyWord();
     }
 }
@@ -44,7 +44,7 @@ void ADVWORD(){
    Proses : Akuisisi kata menggunakan procedure SalinWord */
     IgnoreBlanks();
     if (currentChar == MARK){
-        EndWord = true;
+        endWord = true;
     }
     else{
         CopyWord();
@@ -59,10 +59,24 @@ void CopyWord(){
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
-    currentWord.Length = 0;
-    while ((currentChar != BLANK) && (currentChar != MARK) && (currentWord.Length < NMax)){
-        currentWord.TabWord[currentWord.Length] = currentChar;
-        ADV();
-        currentWord.Length++;
+    for (int j = 0; j < currentWord.Length; j++){
+        currentWord.TabWord[j] = BLANK;
+    }
+    int i = 0;
+    while ((currentChar != BLANK) && (currentChar != MARK) && (i < NMax)){
+            currentWord.TabWord[i] = currentChar;
+            ADV();
+            i++;
+        }
+    currentWord.Length = i;
+}
+
+void LowerCase(){
+/* I.S. currentword terdefinisi sembarang tetapi tidak kosong */
+/* F.S. currentword menjadi lowercase di setiap karakternya */
+    for (int i = 0; i < currentWord.Length; i++){
+      if(currentWord.TabWord[i] >= 65 && currentWord.TabWord[i] <= 90){
+        currentWord.TabWord[i] += 32;
+      }
     }
 }

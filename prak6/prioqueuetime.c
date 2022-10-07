@@ -82,7 +82,7 @@ void Enqueue (PrioQueueTime * Q, infotype X){
                 InfoTail(*Q) = Elmt(*Q, MaxEl(*Q) - 1);
                 Elmt(*Q, MaxEl(*Q) - 1) = X;
                 int count = MaxEl(*Q) - 1;
-                while (count > 0 && ((Time(Elmt(*Q, count))) < (Time(Elmt(*Q, count - 1))))){
+                while (count > Head(*Q) && ((Time(Elmt(*Q, count))) < (Time(Elmt(*Q, count - 1))))){
                     infotype temp = Elmt(*Q, count);
                     Elmt(*Q, count) = Elmt(*Q, count - 1);
                     Elmt(*Q, count - 1) = temp;
@@ -95,7 +95,7 @@ void Enqueue (PrioQueueTime * Q, infotype X){
             Tail(*Q)++;
             InfoTail(*Q) = X;
             int count = Tail(*Q);
-            while (count > 0 && ((Time(Elmt(*Q, count))) < (Time(Elmt(*Q, count - 1))))){
+            while (count > Head(*Q) && ((Time(Elmt(*Q, count))) < (Time(Elmt(*Q, count - 1))))){
                 infotype temp = Elmt(*Q, count);
                 Elmt(*Q, count) = Elmt(*Q, count - 1);
                 Elmt(*Q, count - 1) = temp;

@@ -18,14 +18,19 @@ int main(){
         scanf("%d %c", &Time(in[i]), &Info(in[i]));
     }
     int countin = 0;
+    int det1 = 0;
     int detik = 0;
     infotype out;
     while (countout < N){
         if (countin < N){
-            Enqueue(&Q, in[countin]);
+            infotype x;
+            Time(x) = Time(in[countin]);
+            Info(x) = Info(in[countin]); 
+            Enqueue(&Q, x);
+            countin++;
         }
-        countin++;
-        if (countin > detik){
+        det1++;
+        if (det1 > detik){
             Dequeue(&Q, &out);
             printf("%d %c\n", detik, Info(out));
             detik += Time(out);

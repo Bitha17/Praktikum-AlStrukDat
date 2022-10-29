@@ -1,4 +1,4 @@
-#include "listlinier.h"
+#include "listlinier.c"
 #include <stdio.h>
 
 int main(){
@@ -9,9 +9,6 @@ int main(){
     insertLast(&l,3);
     insertAt(&l,2,2);
     displayList(l);
-    int a;
-    deleteLast(&l,&a);
-    deleteAt(&l,1,&a);
+    inverseList(&l);
     displayList(l);
-    printf("%d\n", a);
 }

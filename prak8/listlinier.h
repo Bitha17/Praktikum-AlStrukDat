@@ -104,6 +104,29 @@ void displayList(List l);
 int length(List l);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
+/****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
+boolean fSearch(List L, Address P);
+/* Mencari apakah ada elemen list yang beralamat P */
+/* Mengirimkan true jika ada, false jika tidak ada */
+Address searchPrec(List L, ElType X);
+/* Mengirimkan address elemen sebelum elemen yang nilainya=X */
+/* Mencari apakah ada elemen list dengan Info(P)=X */
+/* Jika ada, mengirimkan address Prec, dengan Next(Prec)=P dan Info(P)=X. */
+/* Jika tidak ada, mengirimkan Nil */
+/* Jika P adalah elemen pertama, maka Prec=Nil */
+/* Search dengan spesifikasi seperti ini menghindari */
+/* traversal ulang jika setelah Search akan dilakukan operasi lain */
+
+/*** Prekondisi untuk Max/Min : List tidak kosong ***/
+ElType max(List l);
+/* Mengirimkan nilai info(P) yang maksimum */
+Address adrMax(List l);
+/* Mengirimkan address P, dengan info(P) yang bernilai maksimum */
+ElType min(List l);
+/* Mengirimkan nilai info(P) yang minimum */
+Address adrMin(List l);
+/* Mengirimkan address P, dengan info(P) yang bernilai minimum */
+
 /****************** PROSES TERHADAP LIST ******************/
 List concat(List l1, List l2) ;
 /* I.S. l1 dan l2 sembarang */
@@ -111,4 +134,27 @@ List concat(List l1, List l2) ;
 /* Konkatenasi dua buah list : l1 dan l2    */
 /* menghasilkan l3 yang baru (dengan elemen list l1 dan l2 secara beurutan). */
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
+
+/***************** FUNGSI dan PROSEDUR TAMBAHAN **************/
+void deleteAll(List *l);
+/* Delete semua elemen list dan alamat elemen di-dealokasi */
+
+void copyList(List *l1, List *l2);
+/* I.S. L1 sembarang. F.S. L2=L1 */
+/* L1 dan L2 "menunjuk" kepada list yang sama.*/
+/* Tidak ada alokasi/dealokasi elemen */
+
+void inverseList(List *l);
+/* I.S. sembarang. */
+/* F.S. elemen list dibalik : */
+/* Elemen terakhir menjadi elemen pertama, dan seterusnya. */
+/* Membalik elemen list, tanpa melakukan alokasi/dealokasi. */
+
+void splitList(List *l1, List *l2, List l);
+/* I.S. l mungkin kosong */
+/* F.S. Berdasarkan L, dibentuk dua buah list l1 dan l2 */
+/* L tidak berubah: untuk membentuk l1 dan l2 harus alokasi */
+/* l1 berisi separuh elemen L dan l2 berisi sisa elemen L */
+/* Jika elemen L ganjil, maka separuh adalah length(L) div 2 */
+
 #endif

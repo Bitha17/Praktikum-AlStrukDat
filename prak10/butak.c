@@ -21,9 +21,9 @@ int all(Queue q){
 		 p = NEXT(p);
 	}
 	if (count0 == 0){
-		return 0; 
+		return 1; 
 	} else if (count1 == 0){
-		return 1;
+		return 0;
 	} else{
 		return 2;
 	}
@@ -56,7 +56,7 @@ int main(){
 		ADV();
 	}
 	int temp, count;
-	while(!((all(q1) == 0 && HEAD(q2) == 1) || (all(q1) == 1 && HEAD(q2) == 0))){
+	while(!isEmpty(q1) && !((all(q1) == 0 && HEAD(q2) == 1) || (all(q1) == 1 && HEAD(q2) == 0))){
 		if (HEAD(q1) == HEAD(q2)){
 			dequeue(&q1,&temp);
 			dequeue(&q2,&temp);
@@ -72,9 +72,6 @@ int main(){
 			enqueue(&q1,temp);
 			enqueue(&qM,count);
 		}
-		DisplayQueue(q1);
-		DisplayQueue(q2);
-		printf("\n");
 	}
 	printf("%d\n", length(q1));
 }

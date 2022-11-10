@@ -18,12 +18,12 @@ int all(Queue q){
 		} else{
 			count1++;
 		}
-		 p = NEXT(p);
+		p = NEXT(p);
 	}
-	if (count0 == 0){
-		return 1; 
-	} else if (count1 == 0){
-		return 0;
+	if (count0 == length(q)){
+		return 0; 
+	} else if (count1 == length(q)){
+		return 1;
 	} else{
 		return 2;
 	}
@@ -38,7 +38,7 @@ int main(){
 	while(currentChar != ','){
 		if (currentChar == 'B'){
 			enqueue(&q1, 0);
-		} else{
+		} else if (currentChar == 'K'){
 			enqueue(&q1, 1);
 		}
 		i++;
@@ -46,12 +46,11 @@ int main(){
 		ADV();
 	}
 	ADV();
-	int countM = length(q1);
 	while(!EOP){
 		if (currentChar == 'B'){
 			enqueue(&q2, 0);
-		} else{
-			enqueue(&q2,1);
+		} else if (currentChar == 'K'){
+			enqueue(&q2, 1);
 		}
 		ADV();
 	}
@@ -63,7 +62,7 @@ int main(){
 			dequeue(&qM,&count);
 			if (temp == 0){
 				printf("%d -> bulat\n", count);
-			} else{
+			} else {
 				printf("%d -> kotak\n", count);
 			}
 		} else{

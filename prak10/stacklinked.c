@@ -1,4 +1,4 @@
-/* File: stacklinked.h */
+/* File: stacklinked.c */
 /* NIM : 13521111 */
 /* Nama: Tabitha Permalla */
 /* Tanggal: 7 November 2022 */

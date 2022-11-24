@@ -1,7 +1,7 @@
 /* File : bintree.c */
 /* NIM : 13521111 */
 /* Nama: Tabitha Permalla */
-/* Tanggal: 17 November 2022 */
+/* Tanggal: 24 November 2022 */
 /* Topik Praktikum: ADT pohon biner */
 
 #include "bintree.h"
@@ -171,4 +171,41 @@ A
 Note: Anda boleh membuat fungsi tambahan untuk membuat implementasi fungsi ini jika diperlukan
 */
    printTree1(p, h, 0);
+}
+
+int rob1(BinTree root){
+   if (isOneElmt(root)){
+      return ROOT(root);
+   } else if (!isTreeEmpty(root)){
+      if (rob1(LEFT(root)) > rob1(RIGHT(root))){
+         return ROOT(root) + rob1(LEFT(root));
+      } else{
+         return ROOT(root) + rob1(RIGHT(root));
+      }
+   }
+}
+
+int rob2(BinTree root){
+   if (isTreeEmpty(root)){
+      return 0;
+   } else if (isOneElmt(root)){
+      return ROOT(root);
+   } else if (!isTreeEmpty(root)){
+      int n1, n2;
+      if (isUnerLeft(root)){
+         n1 = ROOT(root) + rob2(LEFT(LEFT(root))) + rob2(RIGHT(LEFT(root)));
+         n2 = rob2(LEFT(root));
+      } else if (isUnerRight(root)){
+         n1 = ROOT(root) + rob2(LEFT(RIGHT(root))) + rob2(RIGHT(RIGHT(root)));
+         n2 = rob2(RIGHT(root));
+      } else{
+         n1 = ROOT(root) + rob2(LEFT(LEFT(root))) + rob2(RIGHT(LEFT(root))) + rob2(LEFT(RIGHT(root))) + rob2(RIGHT(RIGHT(root)));
+         n2 = rob2(LEFT(root)) + rob2(RIGHT(root));
+      }
+      if (n1 > n2){
+         return n1;
+      } else{
+         return n2;
+      }
+   }
 }

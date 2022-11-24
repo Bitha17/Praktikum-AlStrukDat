@@ -117,4 +117,13 @@ A
     E
 Note: Anda boleh membuat fungsi tambahan untuk membuat implementasi fungsi ini jika diperlukan
 */
+
+int rob1(BinTree root);
+// Menerima sebuah ruangan rumah yang akan dirampok.
+// Mengembalikan hasil rampokan yang terbesar.
+
+int rob2(BinTree root);
+// Menerima sebuah ruangan rumah yang akan dirampok.
+// Mengembalikan hasil rampokan yang terbesar.
+
 #endif
